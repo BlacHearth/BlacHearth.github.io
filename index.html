@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesosme/4.7.0/css/font-awesome.min.css">
+<title>Functional Task Creation</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<style>
+        /* Style for body and container */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(./BgBlue.jpg);
+            background-size: cover;
+            background-position: top center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #ffffff;
+            background: transparent;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: center;
+            Box-shadow: 0px 0px 18px 0 #0c9cfc;
+        }
+        button{
+            padding: 10px 15px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: transparent;
+            border: backdrop;
+            border-radius: 15px;
+            
+          
+        }
+       
+        button:hover{
+                        
+            box-shadow: 0px 0px 20px 0 #0c9cfc;
+        }
+        button:active{
+            background-color: #2f00ff;
+            box-shadow: 0 5px #6d33f3;
+            transform: translateY(4px);
+        }
+
+        .container:hover{
+            box-shadow: 0px 0px 5px 0 #0c9cfc;
+        }
+        footer{
+            padding: 10px 15px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: transparent;
+            border: backdrop;
+            border-radius: 15px;  
+        }
+        /* ends here */
+</style>
+</head>
+ 
+<div class="container">  
+<Center>    
+<img src="AIGback.jpg" class="img-responsive" alt="AIGback" width="500" height="300">;
+</Center>
+</div>
+<body>
+<div class="container">
+<div>
+<center>
+<table>
+<tr>
+<td>
+                        Date:
+</td>
+<td>
+                        Subject:
+</td>
+</tr>
+<tr>
+<td>
+<input type="date" id="det" class="form-control" onchange="Descrip()">
+</td>
+<td>
+<input type="text" id="subj" class="form-control" onchange="Descrip()"> 
+</td>
+</tr>
+</table>
+<div id="description"></div>
+<div id="descripCopy"></div>
+</center>
+<script>
+    function Descrip(){
+                    const deytinput = document.getElementById('det').value;
+                    const dateObj = new Date(deytinput)
+                    const formattedDate =
+                    dateObj.toLocaleDateString('en-US',{
+                        month: '2-digit',
+                        day: '2-digit',
+                        year: '2-digit'
+                    });
+                    var desSubj = document.getElementById('subj').value;
+                    document.getElementById("description").innerHTML = "<center>" + formattedDate + "|" + desSubj + "</center>";
+                    document.getElementById("descripCopy").innerHTML = "<button "+"onclick="+"InstantDescCopy()"+">Copy to clipboard</button>";
+                    
+}
+function InstantDescCopy(){
+        const textToCopy = document.getElementById("description").innerText;
+        copyToClipboard(textToCopy);
+    }
+</script>
+<fieldset class="border p-2">
+<legend class="float-none w-auto">Short Description</legend>
+<center>
+<table>
+<tr align="center">
+<td>
+                                    Mailbox
+</td>
+<td>
+                                    Region
+</td>
+<td>
+                                    SLA
+</td>
+<td>
+                                    Scope
+</td>
+<td>
+                                     Sender  
+</td>
+<td>
+                                     Shift  
+</td>
+</tr>
+<tr>
+<td>
+<select id="SD1" class="form-control" onchange="SD()">
+<option value=""></option>
+<option value="GSD">GSD</option>
+<option value="CM">CM</option>
+</select>
+</td>
+<td>
+<select id="SD2" class="form-control" onchange="SD()">
+<option value=""></option>
+<option value="APAC">APAC</option>
+<option value="EMEA">EMEA</option>
+<option value="AMER">AMER</option>
+</select>
+</td>
+<td>
+<select id="SD3" class="form-control" onchange="SD()">
+<option value=""></option>
+<option value="BRCH">BRCH</option>
+<option value="NBRCH">NBRCH</option>
+<option value="No Ticket">No Ticket</option>
+</select>
+</td>
+<td>
+<select id="SD4" class="form-control" onchange="SD()">
+<option value=""></option>
+<option value="GSD">GSD</option>
+<option value="NGSD">NGSD</option>
+<option value="No Ticket">No Ticket</option>
+</select>
+</td>
+<td>
+<input type="text" id="sdText" class="form-control" onchange="SD()">
+</td>
+<td>
+<select id="SD5" class="form-control" onchange="SD()">
+<option value=""></option>
+<option value="APAC">APAC</option>
+<option value="EMEA">EMEA</option>
+<option value="AMER">AMER</option>
+</select>
+</td>
+</tr>
+</table>
+<div id="SDesc"></div>
+<div id="Sclip"></div>
+</center>
+</fieldset>
+ 
+ 
+<script>
+    function SD(){
+                    var sub = document.getElementById('subj').value;
+                    var sd1 = document.getElementById('SD1').value;
+                    var sd2 = document.getElementById('SD2').value;
+                    var sd3 = document.getElementById('SD3').value;
+                    var sd4 = document.getElementById('SD4').value;
+                    var sdt = document.getElementById('sdText').value;
+                    var sd5 = document.getElementById('SD5').value;
+                    document.getElementById("SDesc").innerHTML = "<center>" + sd1 + "|" + sd2 + "|" + sd3 + "|" + sd4 + "|" + sdt + "|" + sd5 + "</center>";
+                    document.getElementById("Sclip").innerHTML = "<button "+"onclick="+"InstantCopy()"+">Copy to clipboard</button>";
+    }
+    function copyToClipboard(text) {
+        const tempElement = document.createElement('textarea');
+        tempElement.value = text;
+        tempElement.style.position = 'absolute';
+        tempElement.style.left = '-9999px';
+        tempElement.style.top = '-9999px';
+        document.body.appendChild(tempElement);
+        tempElement.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempElement);
+    }
+    function InstantCopy(){
+        const textToCopy = document.getElementById("SDesc").innerText;
+        copyToClipboard(textToCopy);
+    }
+</script>
+<fieldset class="border p-2">
+<legend class="float-none w-auto">CM Closure Notes</legend>
+<center>
+<select id="ClosureNotes" onchange="Arte()" class="form-control">
+<option value=""></option>
+<option value="1">Misrouted/mishandled|<pre><</pre>Agent Name><pre><</pre>Assignment Group><pre><</pre>SST>| KB number or No KB</option>
+<option value="2">Outage|Tracking or Master Ticket</option>
+<option value="3">Critical Escalation- (Proceed with the analysis for Critical Escalation)</option>
+<option value="4">GSD out of scope|Issue</option>
+<option value="5">Invalid</option>
+</select>
+<div class = "input-group input-group-sm mb-3">
+<input type="text" id="CNotes" size="80" class="form-control">
+</div>
+<div id="CMClip"></div>
+</center>
+<script>
+        function InstantCMCopy(){
+        const textToCopy = document.getElementById("CNotes").value;
+        copyToClipboard(textToCopy);
+    }
+</script>
+</fieldset>
+<fieldset class="border p-2">
+<legend class="float-none w-auto">Escalation Closure Notes</legend>
+<center>
+<table>
+<tr align="center">
+<td>
+                            Category
+</td>
+<td>
+                            Fail point
+</td>
+<td>
+                            Resolution Owner
+</td>
+<td>
+                            Subcategory
+</td>
+</tr>
+<tr>
+<td>
+<select id="category" onchange="UpdateReason()" onkeypress="test()" class="form-control">
+<option value=""></option>
+<option value="People">People</option>
+<option value="Process">Process</option>
+<option value="Technology">Technology</option>
+<option value="Catalog">Catalog</option>
+<option value="Expedite">Expedite</option>
+<option value="Invalid">Invalid</option>
+<option value="VIP">VIP</option>
+<option value="Support Escalation Ongoing">Support Escalation Ongoing</option>
+<option value="Awaiting User Info">Awaiting User Info</option>
+<option value="Pending User Confirmation">Pending User Confirmation</option>
+
+</select>
+</td>
+<td>
+<select id="FailPoint" class="form-control" onchange="test()">
+<option value=""></option>
+<option value="GSD">GSD</option>
+<option value="NGSD">NGSD</option>
+<option value="NA">NA</option>
+</select>
+</td>
+<td>
+<input type="text" id="Reso" class="form-control" onchange="test()">
+</td>
+<td>
+<input type="text" id="SubCat" class="form-control" onchange="test()">
+</td>
+</tr>
+</table>
+</center>    
+</fieldset>
+<fieldset class="border p-2" >
+<legend class="float-none w-auto">Reason for Escalation</legend>
+<center>
+<select id="reason" class="form-control" onchange="test()">
+<option value="0"></option>
+</select>
+<div id="EscaText"></div>
+<div id="EscaCopy"></div>
+<script>
+    function InstantEscaCopy(){
+        const textToCopy = document.getElementById("EscaText").innerText;
+        copyToClipboard(textToCopy);
+    }
+    function test(){
+            var cat = document.getElementById("category").value
+            var Fp = document.getElementById("FailPoint").value
+            var res = document.getElementById("Reso").value
+            var SCat = document.getElementById("SubCat").value
+            var reson = document.getElementById("reason").value
+                document.getElementById("EscaText").innerHTML = cat + "|" + Fp + "|" + res + "|" + SCat + "|" + reson;
+                document.getElementById("EscaCopy").innerHTML = "<button "+"onclick="+"InstantEscaCopy()"+">Copy to clipboard</button>";
+            }
+</script>
+</center>
+</fieldset>
+<fieldset class="border p-2">
+    <legend class="float-none w-auto">Canned Self Service Ticket </legend> 
+    <select id="cSST1" class="form-control" onchange="SST()">
+    <option value=""></option>
+    <option value="A Self Service Ticket has been assigned to you. Please contact the user within 24 hours and update your work notes.<br><br>Reminder:<br>Use the correct CI for the issue. If no CI is available, select Unavailable CI.<br>&#9679; Do NOT change the channel type; keep it as Self-Service.<br>&#9679; Check the Variables tab for an available callback number.<br>&#9679; Reach out during the user's business hours after capturing BTTR.<br><br>Choose the appropriate CATEGORY and SUBCATEGORY based on issue description (this may be updated later if issue is otherwise)<br><br>For more details on handling SST, see this article: KB0069783-Self-Service Ticket Handling - GSD Guide. Thank you."> SST Ticket for GSD</option>
+    <option value="Hi Team,<br><br>Blind\cold Transfer not accepted. Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.<br><br>Thank you">Blind Transfer</option>
+    <option value="Blind\cold Transfer not accepted.<br><br>3.2.4 Breached Ticket<br>&#9679;In cases where the SLA of a ticket is about to be breached or has already been <br>breached while assigned to a queue, the ticket can be escalated functionally or <br>hierarchically to ensure that it is resolved at the earliest. A breached ticket should <br>not be canceled, nor a request made to the Global Service Desk to open a new ticket as a replacement.<br>&#9679;Breached tickets should be prioritized and worked on without cancelling. Ticket<br>assignee is prohibited to cancel and open a new ticket to replace the 'breached' ticket for the same matter.<br><br>Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.<br>Thank you">Breached Blind Transfer</option>
+    <option value="Hi,<br><br>Re-opened ticket. Please follow up with user to understand why this was re-opened.<br><br>Thank You.">Re Opened Ticket</option>
+    <option value="Ticket was left unassigned in GSD queue">Ticket Left by GSD</option>
+    <option value="Treat as SST for proper L1 Triage">Treat as SST</option>
+    <option value="Please review this again and proceed as per process. Check with any available TL, POC/SME or CM if you need assistance, and before ticket reassignment">Re-assigned Back to GSD</option>
+</select>
+
+    <div id="cSSTText"></div>
+    <div id="SSTCopy"></div>
+           
+    <script>
+        function SSTCopy(){
+            const textToCopy = document.getElementById("cSSTText").innerText;
+            copyToClipboard(textToCopy);
+        }
+        function SST(){
+                var SSTv = document.getElementById("cSST1").value
+                    document.getElementById("cSSTText").innerHTML = SSTv;
+                    document.getElementById("SSTCopy").innerHTML = "<button "+"onclick="+"SSTCopy()"+">Copy to clipboard</button>";
+                }
+    </script>
+      
+    <legend class="float-none w-auto">Back Log SST </legend>
+  
+    <select id="bSST1" class="form-control" onchange="bSST()">
+    <option value=""></option>
+    <option value="Treat as SST for EMEA. Ticket received during APAC hours. Thank you.">APAC to EMEA</option>
+    <option value="Treat as SST for AMER. Ticket received during APAC hours. Thank you.">APAC to AMER</option>
+    <option value="Treat as SST for APAC. Ticket received during EMEA hours. Thank you.">EMEA to APAC</option>
+    <option value="Treat as SST for AMER. Ticket received during EMEA hours. Thank you.">EMEA to AMER</option>
+    <option value="Treat as SST for APAC. Ticket received during AMER hours. Thank you.">AMER to APAC</option>
+    <option value="Treat as SST for EMEA. Ticket received during AMER hours. Thank you.">AMER to EMEA</option>
+    </select>
+
+    <div id="bSSTText"></div>
+    <div id="bSSTCopy"></div>
+           
+    <script>
+        function bSSTCopy(){
+            const textToCopy = document.getElementById("bSSTText").innerText;
+            copyToClipboard(textToCopy);
+        }
+        function bSST(){
+                var SSTb = document.getElementById("bSST1").value
+                    document.getElementById("bSSTText").innerHTML = SSTb;
+                    document.getElementById("bSSTCopy").innerHTML = "<button "+"onclick="+"bSSTCopy()"+">Copy to clipboard</button>";
+                }
+    </script>
+
+       
+    
+</fieldset>
+<footer> © copyright 2024 RolandoSornet & DonMarquez All rights reserved. </footer>    
+ 
+<script>
+    function Arte(){
+        document.getElementById("CMClip").innerHTML = "<button "+"onclick="+"InstantCMCopy()"+">Copy to clipboard</button>";
+        const rason = document.getElementById("ClosureNotes");
+        const rason2 = document.getElementById("CNotes");
+        const SValue = rason.value;
+        rason2.value = "";
+        if (SValue === "1"){
+            rason2.value = "Misrouted/mishandled|(Agent Name)(Assignment Group)(SST)| KB number or No KB";
+        } else if (SValue === "2"){
+            rason2.value = "Outage|Tracking or Master Ticket";
+        } else if (SValue ==="3"){
+            rason2.value = "Critical Escalation- (Proceed with the analysis for Critical Escalation)";
+        } else if (SValue ==="4"){
+            rason2.value = "GSD out of scope|Issue";
+        } else if (SValue === "5"){
+            rason2.value = "Invalid";
+        }
+    }
+               function UpdateReason(){
+                    const category1 = document.getElementById("category");
+                    const reason1 = document.getElementById("reason");
+                    const selectedValue = category1.value;
+                    reason1.options.length = 0;
+                    if (selectedValue === "People"){
+                        reason1.options.add(new Option("Ticket closed prematurely","Ticket closed prematurely"));
+                        reason1.options.add(new Option("Failed callback","Failed callback"));
+                        reason1.options.add(new Option("Professionalism","Professionalism"));
+                        reason1.options.add(new Option("Incomplete or incorrect troubleshooting","Incomplete or incorrect troubleshooting"));
+                    } else if (selectedValue === "Process"){
+                        reason1.options.add(new Option("Tickets bouncing around","Tickets bouncing around"));
+                        reason1.options.add(new Option("For KB articles with defects - Indicate defect","For KB articles with defects - Indicate defect"));
+                        reason1.options.add(new Option("For issues with no KB - Indicate the user's issue","For issues with no KB - Indicate the user's issue"));
+                        reason1.options.add(new Option("Long waiting time in GSD Chat Support queue","Long waiting time in GSD Chat Support queue"));
+                        reason1.options.add(new Option("Long waiting time in GSD Phone queue","Long waiting time in GSD Phone queue"));
+                    } else if (selectedValue === "Technology"){
+                        reason1.options.add(new Option("Recurring issue","Recurring issue"));
+                        reason1.options.add(new Option("Multiple users affected","Multiple users affected"));
+                    } else if (selectedValue === "Catalog"){
+                        reason1.options.add(new Option("User unable to fill out the form correctly","User unable to fill out the form correctly"));
+                        reason1.options.add(new Option("Incorrect Catalog Raised","Incorrect Catalog Raised"));
+                    } else if (selectedValue === "Expedite"){
+                        reason1.options.add(new Option("Work stoppage","Work stoppage"));
+                        reason1.options.add(new Option("User finds the SLA too long","User finds the SLA too long"));
+                    } else if (selectedValue === "Invalid"){
+                        reason1.options.add(new Option("No ticket","No ticket"));
+                        reason1.options.add(new Option("Pending for Approval","Pending for Approval"));
+                        reason1.options.add(new Option("CRBG user","CRBG user"));
+                        reason1.options.add(new Option("No standard escalation process","No standard escalation process"));
+                        reason1.options.add(new Option("No L1 triage","No L1 triage"));
+                        reason1.options.add(new Option("Vendors Issue","Vendors Issue"));
+                    } else if (selectedValue === "VIP"){
+                        reason1.options.add(new Option("Work stoppage","Work stoppage"));
+                        reason1.options.add(new Option("User finds the SLA too long","User finds the SLA too long"));
+                        reason1.options.add(new Option("General Query","General Query"));
+                    } else if (selectedValue === "Support Escalation Ongoing"){
+                        reason1.options.add(new Option("NA"));
+                    }else if (selectedValue === "Awaiting User Info"){
+                            reason1.options.add(new Option("NA"));
+                    }else if (selectedValue === "Pending User Confirmation"){
+                            reason1.options.add(new Option("NA"));
+                    
+                }
+            }
+       
+            
+</script>
+</div>
+</div>
+</body>
+</html>
